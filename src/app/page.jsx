@@ -7,7 +7,7 @@ import { Map } from "@/components/map/GoogleMap";
 export default function Home() {
   return (
     <main className="pb-8 pt-8">
-      <div className="w-full flex justify-center items-center">
+      <div className="w-full flex flex-col gap-10 justify-center items-center">
         <div className="container flex justify-center items-center px-8 gap-4">
           <Link href="/">
             <LogoIcon />
@@ -35,8 +35,8 @@ export default function Home() {
           />
         } */}
           </div>
-          <Map />
         </div>
+        <Map />
       </div>
     </main>
   );
