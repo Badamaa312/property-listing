@@ -11,6 +11,7 @@ import { SearchDropDown } from "@/components/search/SearchDropDown";
 const HomePage = () => {
   const [searchValue, setSearchValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState("");
 
   if (typeof window !== "undefined") {
     document.addEventListener("mouseup", () => {
@@ -21,19 +22,12 @@ const HomePage = () => {
     property?.title?.toLowerCase().includes(searchValue)
   );
 
-  console.log(filteredProperty);
-
   const handleCloseDropDown = () => {
     setIsOpen(false);
   };
 
   const handleInputChange = (event) => {
     setIsOpen(true);
-    setSearchValue(event.target.value);
-  };
-
-  const handleClickLink = (event) => {
-    setIsOpen(false);
     setSearchValue(event.target.value);
   };
 
@@ -62,7 +56,7 @@ const HomePage = () => {
               type="text"
               className="bg-[#E8E8EA] outline-none rounded-md"
               onChange={handleInputChange}
-              onClick={handleClickLink}
+              // onClick={handleClickLink}
             />
 
             <SearchDropDown
@@ -70,6 +64,8 @@ const HomePage = () => {
               setIsOpen={setIsOpen}
               isOpen={isOpen}
               filteredProperty={filteredProperty}
+              setSelectedValue={setSelectedValue}
+              selectedValue={selectedValue}
             />
 
             <div className="btn btn-outline btn-accent ">
@@ -78,7 +74,9 @@ const HomePage = () => {
           </div>
         </div>
         <div className="container flex justify-center items-center px-8 gap-4">
-          <div className="w-1/2 border-4 border-red-300 ">{}</div>
+          <div className="w-1/2 border-4 border-red-300 ">
+            {data.properties.City}
+          </div>
           <Map />
         </div>
       </div>
