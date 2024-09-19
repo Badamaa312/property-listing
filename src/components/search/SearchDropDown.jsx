@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CloseIcon } from "../svg/CloseIcon";
 
 export const SearchDropDown = ({
   filteredProperty,
@@ -6,26 +7,25 @@ export const SearchDropDown = ({
   setIsOpen,
   setSearchValue,
 }) => {
-  filteredProperty.length = 5;
+  // filteredProperty.length = 5;
 
-  // const handleClickLink = () => {
-  //   setIsOpen(false);
-  //   setSearchValue("");
-  // };
+  const handleClickLink = (event) => {
+    setIsOpen(false);
+    setSearchValue(event.target.value);
+  };
 
   return (
     <div
       className={`${
-        isOpen ? "h-500 border" : "h-0"
-      } flex flex-col gap-1 transition-all duration-200 overflow-hidden absolute rounded-2xl bg-white`}
+        isOpen ? "border" : "h-0"
+      } flex flex-col gap-1 transition-all duration-200 overflow-hidden absolute rounded-2xl bg-blue-200`}
     >
       {filteredProperty.map((properties) => {
         return (
-          <Link onClick={setIsOpen} href={`/mock/${properties?.id}`}>
-            <div className="p-3 border  rounded-xl text-wrap hover:bg-blue-100">
-              {properties?.title}
-            </div>
-          </Link>
+          <div className="p-3 border flex justify-center items-center rounded-xl relative text-wrap hover:bg-blue-400 text-black">
+            {properties?.title}
+            <CloseIcon />
+          </div>
         );
       })}
     </div>
