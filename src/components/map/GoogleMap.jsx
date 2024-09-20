@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-// import { Loader } from "@googlemaps/js-api-loader";
 import { Loader } from "@googlemaps/js-api-loader";
+import data from "../../mock/data.json";
+import { SearchDropDown } from "../search/SearchDropDown";
 
-export const Map = () => {
+export const Map = ({ lat, long }) => {
   const mapRef = useRef(null);
 
   useEffect(() => {
@@ -46,5 +47,9 @@ export const Map = () => {
     initMap();
   }, []);
 
-  return <div className="w-[600px] h-[600px]" ref={mapRef}></div>;
+  return (
+    <div className="w-[600px] h-[1000px]" ref={mapRef}>
+      {data.properties.lat}
+    </div>
+  );
 };

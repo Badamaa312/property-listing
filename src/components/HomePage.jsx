@@ -7,11 +7,12 @@ import { Map } from "@/components/map/GoogleMap";
 import data from "../mock/data.json";
 import { useState } from "react";
 import { SearchDropDown } from "@/components/search/SearchDropDown";
+import { PropertyList } from "./search/PropertyList";
 
 const HomePage = () => {
   const [searchValue, setSearchValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("");
+  // const [selectedValue, setSelectedValue] = useState("");
 
   if (typeof window !== "undefined") {
     document.addEventListener("mouseup", () => {
@@ -19,8 +20,14 @@ const HomePage = () => {
     });
   }
   const filteredProperty = data.properties.filter((property) =>
-    property?.title?.toLowerCase().includes(searchValue)
+    property?.City?.toLowerCase().includes(searchValue)
   );
+
+  console.log("filteredPro", filteredProperty);
+
+  // const filteredSelectedValue = data.properties.filter((property) =>
+  //   property?.City?.toLowerCase().includes(selectedValue)
+  // );
 
   const handleCloseDropDown = () => {
     setIsOpen(false);
@@ -31,8 +38,14 @@ const HomePage = () => {
     setSearchValue(event.target.value);
   };
 
+  // const handleClickLink = (event) => {
+  //   setSelectedValue(event.target.value);
+  // };
+
+  console.log(data.properties);
+
   return (
-    <main className="pb-8 pt-8">
+    <main className="pb-8 pt-8 bg-slate-50">
       <div className="w-full flex flex-col gap-10 justify-between items-center">
         <div className="container flex justify-center items-center px-8 gap-4">
           <Link href="/">
@@ -50,6 +63,7 @@ const HomePage = () => {
                 </li>
               </ul>
             </details>
+
             <input
               placeholder="Search"
               value={searchValue}
@@ -58,24 +72,25 @@ const HomePage = () => {
               onChange={handleInputChange}
               // onClick={handleClickLink}
             />
-
             <SearchDropDown
               setSearchValue={setSearchValue}
               setIsOpen={setIsOpen}
               isOpen={isOpen}
               filteredProperty={filteredProperty}
-              setSelectedValue={setSelectedValue}
-              selectedValue={selectedValue}
+              // setSelectedValue={setSelectedValue}
+              // filteredSelectedValue={filteredSelectedValue}
             />
-
             <div className="btn btn-outline btn-accent ">
               <SearchIcon />
             </div>
           </div>
         </div>
         <div className="container flex justify-center items-center px-8 gap-4">
-          <div className="w-1/2 border-4 border-red-300 ">
-            {data.properties.City}
+          <div className="w-1/2 border-4 border-red-300   gap-4">
+            Cities- Hiinee
+            {filteredProperty.map((property) => {
+              return <PropertyList property={property} />;
+            })}
           </div>
           <Map />
         </div>

@@ -1,29 +1,24 @@
-import Link from "next/link";
 import { CloseIcon } from "../svg/CloseIcon";
 
-export const SearchDropDown = ({
-  filteredProperty,
-  isOpen,
-  setIsOpen,
-  setSearchValue,
-}) => {
-  // filteredProperty.length = 5;
-
-  const handleClickLink = (event) => {
-    setIsOpen(false);
-    setSearchValue(event.target.value);
+export const SearchDropDown = ({ filteredProperty, isOpen }) => {
+  const gotoCityHotels = (city) => {
+    // json city geern filter => hotels
+    //  hotels => hajuutakruu ugnu
+    // console.log("hi");
   };
-
   return (
     <div
       className={`${
         isOpen ? "border" : "h-0"
-      } flex flex-col gap-1 transition-all duration-200 overflow-hidden absolute rounded-2xl bg-blue-200`}
+      } flex flex-col gap-1 transition-all duration-200 overflow-hidden absolute z-[1] rounded-2xl bg-blue-200`}
     >
       {filteredProperty.map((properties) => {
         return (
-          <div className="p-3 border flex justify-center items-center rounded-xl relative text-wrap hover:bg-blue-400 text-black">
-            {properties?.title}
+          <div
+            onClick={gotoCityHotels(properties?.City)}
+            className="p-3 border flex justify-center items-center rounded-xl z-[1] relative text-wrap hover:bg-blue-400 text-black"
+          >
+            {properties?.City}
             <CloseIcon />
           </div>
         );
