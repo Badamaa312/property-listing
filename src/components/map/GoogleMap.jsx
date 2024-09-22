@@ -1,12 +1,18 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
+import { PropertyOnMap } from "./PropertyOnMap";
 import data from "../../mock/data.json";
-import { SearchDropDown } from "../search/SearchDropDown";
 
-export const Map = ({ lat, long }) => {
+export const Map = ({}) => {
   const mapRef = useRef(null);
+
+  const [searchValue, setSearchValue] = useState("");
+
+  const filteredProperty = data.properties.filter((property) =>
+    property?.City?.toLowerCase().includes(searchValue)
+  );
 
   useEffect(() => {
     const initMap = async () => {
@@ -24,6 +30,8 @@ export const Map = ({ lat, long }) => {
       const position = {
         lat: 43.642693,
         lng: -79.3871189,
+        // lat: properties.lat,
+        // lng: properties.long,
       };
 
       // map option
@@ -45,11 +53,14 @@ export const Map = ({ lat, long }) => {
       });
     };
     initMap();
-  }, []);
+    setSearchValue();
+  }, [searchValue]);
 
   return (
     <div className="w-[600px] h-[1000px]" ref={mapRef}>
-      {data.properties.lat}
+      {filteredProperty.map((property) => {
+        return <PropertyOnMap property={property} />;
+      })}
     </div>
   );
 };

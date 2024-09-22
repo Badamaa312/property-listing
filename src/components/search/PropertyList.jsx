@@ -1,5 +1,3 @@
-import data from "../../mock/data.json";
-
 export const PropertyList = ({ property }) => {
   return (
     <main>
@@ -8,7 +6,7 @@ export const PropertyList = ({ property }) => {
           <div
             style={{
               backgroundImage: `url(${property.imageUrl})`,
-              width: "100%",
+              width: "80%",
               height: "240px",
               backgroundSize: "cover",
               backgroundPosition: "center",
@@ -20,9 +18,7 @@ export const PropertyList = ({ property }) => {
             {property.title}
           </div>
           <div className="overflow-hidden h-[100px]">
-            <p className="text-2xl font-semibold text-ellipsis line-clamp-3 ">
-              {property.star}
-            </p>
+            <p className="text-md text-ellipsis ">{property.star}</p>
           </div>
         </div>
       </div>

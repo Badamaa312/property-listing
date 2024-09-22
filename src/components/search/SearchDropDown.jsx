@@ -1,7 +1,7 @@
 import { CloseIcon } from "../svg/CloseIcon";
 
 export const SearchDropDown = ({ filteredProperty, isOpen }) => {
-  const gotoCityHotels = (city) => {
+  const gotoCityHotels = (City) => {
     // json city geern filter => hotels
     //  hotels => hajuutakruu ugnu
     // console.log("hi");

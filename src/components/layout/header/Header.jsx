@@ -1,42 +1,69 @@
+import { SearchDropDown } from "@/components/search/SearchDropDown";
+import { LogoIcon } from "@/components/svg/LogoIcon";
 import { SearchIcon } from "@/components/svg/SearchIcon";
 import Link from "next/link";
+import { useState } from "react";
+import data from "../../../mock/data.json";
 
 export const Header = () => {
+  const [searchValue, setSearchValue] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+
+  if (typeof window !== "undefined") {
+    document.addEventListener("mouseup", () => {
+      handleCloseDropDown();
+    });
+  }
+  const filteredProperty = data.properties.filter((property) =>
+    property?.City?.toLowerCase().includes(searchValue)
+  );
+  const handleCloseDropDown = () => {
+    setIsOpen(false);
+  };
+
+  const handleInputChange = (event) => {
+    setIsOpen(true);
+    setSearchValue(event.target.value);
+  };
   return (
     <main className="pb-8 pt-8">
       <div className="w-full flex justify-around relative">
-        <div className="container flex justify-between items-center px-8">
-          {/* <Link href="/">
+        <div className="container flex justify-center items-center px-8 gap-4">
+          <Link href="/">
             <LogoIcon />
-          </Link> */}
-          <div className="flex items-center justify-center ">
-            <Link href="/">
-              <button className="px-2">Home</button>
-            </Link>
-            <Link href="/blogs">
-              <button className="px-2">Blog</button>
-            </Link>
-            <Link href="/contact-us">
-              <button className="px-2">Contact</button>
-            </Link>
-          </div>
-          <div className="flex rounded-md bg-[#E8E8EA] text-wrap gap-2 pr-2 pl-3 pb-2 pt-2 items-center relative">
+          </Link>
+          <div className="flex rounded-md bg-[#E8E8EA] text-wrap gap-2 justify-between">
+            <details className="dropdown">
+              <summary className="btn bg-slate-100">All</summary>
+              <ul className="menu dropdown-content bg-slate-100 rounded-box z-[1] w-52 p-2 shadow">
+                <li>
+                  <a>All</a>
+                </li>
+                <li>
+                  <a>Rent</a>
+                </li>
+              </ul>
+            </details>
+
             <input
               placeholder="Search"
-              //   value={searchValue}
+              value={searchValue}
               type="text"
               className="bg-[#E8E8EA] outline-none rounded-md"
-              //   onChange={handleInputChange}
+              onChange={handleInputChange}
+              // onClick={handleClickLink}
             />
-            {/* {
-              <SearchDropDown
-                setSearchValue={setSearchValue}
-                setIsOpen={setIsOpen}
-                isOpen={isOpen}
-                filteredArticle={filteredArticle}
-              />
-            } */}
-            <SearchIcon />
+            <SearchDropDown
+              setSearchValue={setSearchValue}
+              setIsOpen={setIsOpen}
+              isOpen={isOpen}
+              filteredProperty={filteredProperty}
+              // setSelectedValue={setSelectedValue}
+              // filteredSelectedValue={filteredSelectedValue}
+            />
+            <div className="btn btn-outline btn-accent ">
+              <SearchIcon />
+            </div>
           </div>
         </div>
       </div>
