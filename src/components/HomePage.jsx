@@ -34,6 +34,11 @@ const HomePage = () => {
     setSearchValue(event.target.value);
   };
 
+  const handleClickLink = (event) => {
+    setIsOpen(true);
+    setSearchValue(event.target.value);
+  };
+
   return (
     <main className="pb-8 pt-8 bg-slate-50">
       <div className="w-full flex flex-col gap-10 justify-between items-center">
@@ -59,7 +64,7 @@ const HomePage = () => {
               type="text"
               className="bg-[#E8E8EA] outline-none rounded-md"
               onChange={handleInputChange}
-              // onClick={handleClickLink}
+              onClick={handleClickLink}
             />
             <SearchDropDown
               setSearchValue={setSearchValue}
@@ -86,8 +91,7 @@ const HomePage = () => {
           </div>
         </div>
         <div className="container flex px-8 gap-4">
-          <div className="w-1/2 gap-4">
-            Cities- Hiinee
+          <div className="w-1/2 gap-4 skeleton h-16 shrink-0 rounded-full">
             {filteredProperty.map((property) => {
               return (
                 <div>
@@ -104,3 +108,35 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+// class App extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       fruit: "banana",
+//     };
+
+//     this.handleChange = this.handleChange.bind(this);
+//   }
+
+//   handleChange(e) {
+//     console.log("Fruit Selected!!");
+//     this.setState({ fruit: e.target.value });
+//   }
+
+//   render() {
+//     return (
+//       <div id="App">
+//         <div className="select-container">
+//           <select value={this.state.fruit} onChange={this.handleChange}>
+//             {options.map((option) => (
+//               <option value={option.value}>{option.label}</option>
+//             ))}
+//           </select>
+//         </div>
+//       </div>
+//     );
+//   }
+// }
+
+// export default App;

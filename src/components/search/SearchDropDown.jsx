@@ -4,7 +4,7 @@ export const SearchDropDown = ({ filteredProperty, isOpen }) => {
   const gotoCityHotels = (City) => {
     // json city geern filter => hotels
     //  hotels => hajuutakruu ugnu
-    // console.log("hi");
+    console.log("hi");
   };
   return (
     <div
