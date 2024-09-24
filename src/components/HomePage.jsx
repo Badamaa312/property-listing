@@ -12,6 +12,7 @@ import { SearchIcon } from "./svg/SearchIcon";
 import { PhoneIcon } from "./svg/PhoneIcon";
 import { CloseIcon } from "./svg/CloseIcon";
 import { DropIcon } from "./svg/DropIcon";
+import { SearchList } from "./search/SearchList";
 
 const HomePage = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -66,13 +67,19 @@ const HomePage = () => {
               onChange={handleInputChange}
               onClick={handleClickLink}
             />
+            {filteredProperty.map((property) => {
+              return (
+                <div className="flex justify-center items-center">
+                  <SearchList property={property} />
+                </div>
+              );
+            })}
+
             <SearchDropDown
               setSearchValue={setSearchValue}
               setIsOpen={setIsOpen}
               isOpen={isOpen}
               filteredProperty={filteredProperty}
-              // setSelectedValue={setSelectedValue}
-              // filteredSelectedValue={filteredSelectedValue}
             />
             <div className="btn btn-outline btn-accent ">
               <SearchIcon />

@@ -44,7 +44,6 @@ export const Header = () => {
                 </li>
               </ul>
             </details>
-
             <input
               placeholder="Search"
               value={searchValue}

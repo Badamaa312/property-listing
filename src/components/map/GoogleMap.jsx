@@ -8,11 +8,11 @@ import data from "../../mock/data.json";
 export const Map = ({}) => {
   const mapRef = useRef(null);
 
-  // const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState("");
 
-  // const filteredProperty = data.properties.filter((property) =>
-  //   property?.City?.toLowerCase().includes(searchValue)
-  // );
+  const filteredProperty = data.properties.filter((property) =>
+    property?.City?.toLowerCase().includes(searchValue)
+  );
 
   useEffect(() => {
     const initMap = async () => {
@@ -53,14 +53,14 @@ export const Map = ({}) => {
       });
     };
     initMap();
-    // setSearchValue();
-  }, []);
+    setSearchValue();
+  }, [searchValue]);
 
   return (
-    <div className="w-[600px] h-[1000px]" ref={mapRef}>
-      {/* {filteredProperty.map((property) => {
+    <div className="w-[600px] h-[1000px] " ref={mapRef}>
+      {filteredProperty.map((property) => {
         return <PropertyOnMap property={property} />;
-      })} */}
+      })}
     </div>
   );
 };

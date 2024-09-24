@@ -1,9 +1,11 @@
-export const PropertyList = ({ property }) => {
+import { CloseIcon } from "../svg/CloseIcon";
+
+export const SearchList = ({ property }) => {
   return (
     <main>
-      <div className="flex flex-col gap-10">
+      <div className="flex flex-col gap-4">
         <div className="flex overflow-hidden gap-4">
-          <div
+          {/* <div
             style={{
               backgroundImage: `url(${property.imageUrl})`,
               width: "80%",
@@ -13,13 +15,14 @@ export const PropertyList = ({ property }) => {
               borderRadius: "6px",
               gap: "10px",
             }}
-          ></div>
+          ></div> */}
           <div className="w-[100px] h-[30px] bg-[#4B6BFB0D] flex justify-center items-center rounded-md text-[#4B6BFB]">
-            {property.title}
+            {property.City}
+            <CloseIcon />
           </div>
-          <div className="overflow-hidden h-[100px]">
+          {/* <div className="overflow-hidden h-[100px]">
             <p className="text-md text-ellipsis ">{property.star}</p>
-          </div>
+          </div> */}
         </div>
       </div>
     </main>
