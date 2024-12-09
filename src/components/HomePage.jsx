@@ -2,7 +2,7 @@
 
 import { Map } from "@/components/map/GoogleMap";
 import { PropertyList } from "./search/PropertyList";
-import { Header } from "./layout/header/Header";
+
 import { useState } from "react";
 import data from "../mock/data.json";
 import Link from "next/link";
@@ -10,9 +10,8 @@ import { LogoIcon } from "./svg/LogoIcon";
 import { SearchDropDown } from "./search/SearchDropDown";
 import { SearchIcon } from "./svg/SearchIcon";
 import { PhoneIcon } from "./svg/PhoneIcon";
-import { CloseIcon } from "./svg/CloseIcon";
 import { DropIcon } from "./svg/DropIcon";
-import { SearchList } from "./search/SearchList";
+import { Footer } from "./layout/footer/Footer";
 
 const HomePage = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -67,13 +66,6 @@ const HomePage = () => {
               onChange={handleInputChange}
               onClick={handleClickLink}
             />
-            {filteredProperty.map((property) => {
-              return (
-                <div className="flex justify-center items-center">
-                  <SearchList property={property} />
-                </div>
-              );
-            })}
 
             <SearchDropDown
               setSearchValue={setSearchValue}
@@ -99,7 +91,7 @@ const HomePage = () => {
         </div>
         <div className="container flex px-8 gap-4">
           <div className="w-1/2 gap-4 skeleton h-16 shrink-0 rounded-full">
-            {filteredProperty.map((property) => {
+            {filteredProperty.slice(0, 4).map((property) => {
               return (
                 <div>
                   <PropertyList property={property} />
@@ -110,40 +102,9 @@ const HomePage = () => {
           <Map />
         </div>
       </div>
+      <Footer />
     </main>
   );
 };
 
 export default HomePage;
-
-// class App extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       fruit: "banana",
-//     };
-
-//     this.handleChange = this.handleChange.bind(this);
-//   }
-
-//   handleChange(e) {
-//     console.log("Fruit Selected!!");
-//     this.setState({ fruit: e.target.value });
-//   }
-
-//   render() {
-//     return (
-//       <div id="App">
-//         <div className="select-container">
-//           <select value={this.state.fruit} onChange={this.handleChange}>
-//             {options.map((option) => (
-//               <option value={option.value}>{option.label}</option>
-//             ))}
-//           </select>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-
-// export default App;

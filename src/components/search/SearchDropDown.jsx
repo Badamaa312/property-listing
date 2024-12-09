@@ -26,3 +26,5 @@ export const SearchDropDown = ({ filteredProperty, isOpen }) => {
     </div>
   );
 };
+
+// City-geer haij bui heseg

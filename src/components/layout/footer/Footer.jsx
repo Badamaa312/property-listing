@@ -1,5 +1,3 @@
-import { InstaIcon } from "@/components/svg/InstaIcon";
-import { MetaIcon } from "@/components/svg/MetaIcon";
 import Link from "next/link";
 
 export const Footer = () => {

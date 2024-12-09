@@ -12,3 +12,5 @@ export const PropertyOnMap = ({ property }) => {
     </main>
   );
 };
+
+// Map deer long lat-g gargarj bui heseg
