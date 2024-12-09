@@ -10,10 +10,10 @@ const List = ({ selectedLocation }) => {
 
   return (
     <div className="flex flex-col w-full h-[900px] pr-8 gap-5">
-      <h1 className="text-[#3E4958] text-3xl">
+      {/* <h1 className="text-[#3E4958] text-3xl">
         Stays in {cityNames || "No city selected"}
-      </h1>
-      <div className="flex w-full h-[50px] justify-between gap-5">
+      </h1> */}
+      {/* <div className="flex w-full h-[50px] justify-between gap-5">
         <button className="btn btn-outline rounded-[30px] px-5">
           Free cancellation
         </button>
@@ -24,7 +24,7 @@ const List = ({ selectedLocation }) => {
         <div className="flex justify-center items-center">
           <Filter />
         </div>
-      </div>
+      </div> */}
       <div className="flex flex-col gap-3 w-full h-auto overflow-y-auto py-2">
         {selectedLocation.map((data) => {
           return (

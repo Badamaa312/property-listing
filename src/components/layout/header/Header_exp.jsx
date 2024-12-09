@@ -1,5 +1,4 @@
 import Select from "react-select";
-import { Logo } from "../Icons/Logo";
 import { LogoIcon } from "@/components/svg/LogoIcon";
 
 const Header_Exp = ({ districtOptions, handleSelectChange }) => {

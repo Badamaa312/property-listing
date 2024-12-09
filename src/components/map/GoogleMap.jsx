@@ -1,18 +1,18 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
-import { PropertyOnMap } from "./PropertyOnMap";
-import data from "../../mock/data.json";
 
-export const Map = ({}) => {
+export const Map = ({ selectedLocation }) => {
   const mapRef = useRef(null);
+  const mapInstance = useRef(null);
+  const markerInstances = useRef([]);
 
-  const [searchValue, setSearchValue] = useState("");
+  // const [searchValue, setSearchValue] = useState("");
 
-  const filteredProperty = data.properties.filter((property) =>
-    property?.City?.toLowerCase().includes(searchValue)
-  );
+  // const filteredProperty = data.properties.filter((property) =>
+  //   property?.City?.toLowerCase().includes(searchValue)
+  // );
 
   useEffect(() => {
     const initMap = async () => {
@@ -21,7 +21,7 @@ export const Map = ({}) => {
         version: "weekly",
       });
 
-      const { Map } = await loader.importLibrary("maps");
+      const { Map, InfoWindow } = await loader.importLibrary("maps");
 
       // init marker
 
@@ -37,30 +37,61 @@ export const Map = ({}) => {
       // map option
 
       const mapOptions = {
-        center: position,
-        zoom: 17,
+        center: { lat: 35.52942047350689, lng: -97.47191031062086 },
+        zoom: 4,
         mapId: "MY_NEXTJSID",
       };
 
       // setup the map
 
-      const map = new Map(mapRef.current, mapOptions);
+      if (mapRef.current && !mapInstance.current) {
+        mapInstance.current = new Map(mapRef.current, mapOptions);
+      }
+
       // put up a marker
 
-      const marker = new Marker({
-        map: map,
-        position: position,
-      });
+      // const marker = new Marker({
+      //   map: map,
+      //   position: position,
+      // });
     };
     initMap();
-    setSearchValue();
-  }, [searchValue]);
+    // setSearchValue();
+  }, []);
 
-  return (
-    <div className="w-[600px] h-[1000px] " ref={mapRef}>
-      {filteredProperty.map((property) => {
-        return <PropertyOnMap property={property} />;
-      })}
-    </div>
-  );
+  useEffect(() => {
+    if (mapInstance.current && selectedLocation.length > 0) {
+      markerInstances.current.forEach((marker) => marker.setMap(null));
+      markerInstances.current = [];
+
+      selectedLocation.forEach((location) => {
+        const { lat, lng, title } = location;
+
+        const marker = new google.maps.Marker({
+          position: { lat, lng },
+          map: mapInstance.current,
+        });
+
+        const contentString = `<div class="flex justify-start items-start text-black p-2 mt-0">${title}</div>`;
+        const infoWindow = new google.maps.InfoWindow({
+          content: contentString,
+        });
+
+        marker.addListener("click", () => {
+          infoWindow.open(mapInstance.current, marker);
+        });
+
+        markerInstances.current.push(marker);
+      });
+
+      const lastLocation = selectedLocation[selectedLocation.length - 1];
+      mapInstance.current.setCenter({
+        lat: lastLocation.lat,
+        lng: lastLocation.lng,
+      });
+      mapInstance.current.setZoom(12);
+    }
+  }, [selectedLocation]);
+
+  return <div ref={mapRef} className="rounded-2xl w-[1900px] h-[900px]"></div>;
 };
