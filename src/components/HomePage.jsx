@@ -1,7 +1,5 @@
 "use client";
 
-import { Map } from "@/components/map/GoogleMap";
-
 import { useEffect, useState } from "react";
 import data from "../mock/data.json";
 import Header_Exp from "./layout/header/Header_exp";
@@ -33,10 +31,6 @@ const HomePage = () => {
     }
   };
 
-  const filteredProperty = data.properties.filter((property) =>
-    property?.City?.toLowerCase().includes(searchValue)
-  );
-
   const handleSelectCityChange = (selectedOptions) => {
     const selectedCities = selectedOptions.map((option) => option.value);
 
@@ -62,14 +56,14 @@ const HomePage = () => {
   }, []);
 
   return (
-    <main>
-      {" "}
-      <div className="container flex flex-col justify-center items-center max-w-[1366px] max-h-[1024px] mt-7 rounded-3xl">
+    <main className="w-screen">
+      <div className="w-full flex flex-col justify-center items-center max-w-[1366px] max-h-[1024px] mt-7 rounded-3xl">
         <Header_Exp
           districtOptions={districtOptions}
           handleSelectChange={handleSelectCityChange}
         />
-        <Body selectedLocation={filterCity} />
+
+        <Body selectedLocation={filterCity} properties={properties} />
       </div>
     </main>
   );
