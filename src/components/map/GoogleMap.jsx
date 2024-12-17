@@ -93,5 +93,5 @@ export const Map = ({ selectedLocation }) => {
     }
   }, [selectedLocation]);
 
-  return <div ref={mapRef} className="rounded-2xl w-[1900px] h-[900px]"></div>;
+  return <div ref={mapRef} className="rounded-2xl w-[1200px] h-[1300px]"></div>;
 };

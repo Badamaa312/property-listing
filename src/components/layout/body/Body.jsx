@@ -7,9 +7,9 @@ const Body = ({ selectedLocation, properties }) => {
   console.log(properties);
 
   return (
-    <div className="flex w-full h-screen border rounded-b-3xl bg-white p-10">
-      <List selectedLocation={selectedLocation} />
-      <div className="flex flex-col gap-3 w-full h-auto overflow-y-auto py-2">
+    <div className="flex w-full h-screen  rounded-b-3xl bg-white p-10">
+      {/* <List selectedLocation={selectedLocation} /> */}
+      <div className="flex flex-col gap-3 w-[1/3]  overflow-y-auto py-2">
         {properties.slice(0, 3).map((data) => {
           return (
             <ListCard
@@ -24,8 +24,10 @@ const Body = ({ selectedLocation, properties }) => {
           );
         })}
       </div>
-
-      <Map selectedLocation={selectedLocation} />
+      <div className="w-2/3">
+        {" "}
+        <Map selectedLocation={selectedLocation} />
+      </div>
     </div>
   );
 };
