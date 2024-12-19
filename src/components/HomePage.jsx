@@ -66,9 +66,9 @@ const HomePage = () => {
   }, []);
 
   return (
-    <main className="w-screen flex justify-center mt-10 ">
+    <main className="w-full flex justify-center mt-10 ">
       <div className="w-full flex flex-col gap-[50px] items-center">
-        <div className="flex container items-center justify-center gap-6 rounded-xl">
+        <div className="flex w-[1200px] items-center justify-center gap-6 rounded-xl">
           <LogoIcon />
           <Select
             defaultValue={[]}

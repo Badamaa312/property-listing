@@ -21,7 +21,7 @@ const ListCard = ({
             borderRadius: "16px",
           }}
         ></div>
-        <div className="flex flex-col w-[248px] h-full pl-4 gap-5">
+        <div className="flex flex-col w-[248px] h-full pl-4 gap-1">
           <h3 className="text-[#3E4958] text-xl">{title || "No title"}</h3>
           <div className="flex gap-5">
             <div className="flex gap-1 items-center">
